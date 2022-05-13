@@ -1,4 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  OneToMany,
+} from 'typeorm';
+
+import { Ingredients } from 'orm/entities/ingredients/ingredients';
 
 @Entity('ingredient')
 export class Ingredient {
@@ -10,6 +20,9 @@ export class Ingredient {
     nullable: false,
   })
   name: string;
+
+  @OneToMany(() => Ingredients, (ingredient) => ingredient.recipe)
+  ingredients: Ingredients[];
 
   @Column()
   @CreateDateColumn()

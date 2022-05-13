@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, getRepository } from 'typeorm';
 
-import { Ingredient } from '../entities/ingredient/Ingredient';
+import { Ingredient } from '../entities/ingredient/ingredient';
 
 export class SeedIngredient1652362590765 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {

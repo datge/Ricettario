@@ -1,5 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  ManyToOne,
+} from 'typeorm';
 
+import { Ingredient } from 'orm/entities/ingredient/ingredient';
+import { Recipes } from 'orm/entities/recipes/recipes';
 @Entity('ingredients')
 export class Ingredients {
   @PrimaryGeneratedColumn()
@@ -14,6 +24,12 @@ export class Ingredients {
     nullable: false,
   })
   ingredient_id: number;
+
+  @ManyToOne(() => Recipes, (recipe) => recipe.ingredients)
+  recipe: Recipes;
+
+  @ManyToOne(() => Ingredient, (ingredient) => ingredient.ingredients)
+  ingredient: Ingredient;
 
   @Column({
     default: 1,
